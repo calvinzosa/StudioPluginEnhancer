@@ -1,0 +1,252 @@
+@font-face {
+	font-family: 'Outfit';
+	src: url(/src/assets/Outfit-Font.ttf) format(truetype);
+}
+
+@font-face {
+	font-family: 'Material Symbols Outlined';
+	src: url(/src/assets/GoogleMaterialSymbols.ttf) format(truetype);
+}
+
+body {
+	margin: 0;
+	padding: 0;
+	color: #ffffff;
+	background-color: #111216;
+	font-family: 'Outfit';
+}
+
+span.material-symbol {
+	font-family: 'Material Symbols Outlined';
+	font-weight: normal;
+	font-style: normal;
+	font-size: 24px;
+	line-height: 1;
+	letter-spacing: normal;
+	text-transform: none;
+	display: inline-block;
+	white-space: nowrap;
+	word-wrap: normal;
+	direction: ltr;
+	font-feature-settings: "liga";
+	-webkit-font-feature-settings: "liga";
+	-webkit-font-smoothing: antialiased;
+	user-select: none;
+	font-variation-settings:
+		'FILL' 1,
+		'wght' 400,
+		'GRAD' 0,
+		'opsz' 24;
+}
+
+p, h1, h2, h3, h4, h5, h6 {
+	margin: 0;
+	padding: 0;
+}
+
+a {
+	text-decoration: none;
+}
+
+button, input {
+	font-family: 'Outfit';
+}
+
+img {
+	-webkit-user-drag: none;
+}
+
+main {
+	position: absolute;
+	left: 0;
+	top: 0;
+	right: 0;
+	bottom: 0;
+	
+	> div.topbar {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		height: 50px;
+		user-select: none;
+		border-bottom: 1px solid #313339;
+		
+		> div.logo {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			padding: 0 12px;
+			gap: 12px;
+			box-sizing: border-box;
+			pointer-events: none;
+			
+			> img {
+				height: 2rem;
+			}
+			
+			> h1 {
+				font-size: 2rem;
+			}
+		}
+		
+		> div.controls {
+			display: flex;
+			flex-direction: row;
+			gap: 0;
+			
+			> button {
+				width: 55px;
+				border: none;
+				outline: none !important;
+				background-color: transparent;
+				color: #ffffff;
+				transition: background-color 200ms;
+				
+				> span {
+					font-family: 'Segoe Fluent Icons';
+				}
+				
+				&:disabled {
+					color: #999999;
+				}
+				
+				&:not(:disabled):hover {
+					background-color: #ffffff22;
+					
+					&.close {
+						background-color: red;
+					}
+				}
+			}
+		}
+	}
+	
+	> div.tabs {
+		display: flex;
+		flex-direction: column;
+		gap: 6px;
+		position: absolute;
+		left: 0;
+		top: 50px;
+		width: 270px;
+		padding: 6px;
+		bottom: 0;
+		box-sizing: border-box;
+		overflow-y: auto;
+		user-select: none;
+		z-index: 12;
+		border-right: 1px solid #313339;
+		background-color: #111216;
+		border-top: 1px solid #313339;
+		
+		> a.tab {
+			display: flex;
+			flex-direction: row;
+			gap: 12px;
+			padding: 12px 20px;
+			border-radius: 6px;
+			font-size: 1.2rem;
+			transition: background-color 150ms, color 150ms;
+			color: #aaaaaa;
+			background-color: #111216;
+			cursor: pointer;
+			
+			&.disabled {
+				color: #555555;
+				pointer-events: none;
+			}
+			
+			&:not(.disabled) {
+				&.active {
+					color: #ffffff;
+					background-color: #2e2f32;
+					cursor: default;
+				}
+				
+				&:not(.active):hover {
+					color: #dddddd;
+					background-color: #1f2024;
+					
+					&.quit {
+						color: #b94c4c;
+					}
+				}
+			}
+		}
+		
+		> div.space {
+			flex-grow: 1;
+		}
+	}
+	
+	> div.buildInfo {
+		display: flex;
+		flex-direction: column;
+		align-items: flex-end;
+		position: absolute;
+		left: 270px;
+		right: 0;
+		bottom: 0;
+		height: fit-content;
+		padding: 2px;
+		z-index: 11;
+		background-color: #111216;
+		box-shadow: 0 0 25px 20px #111216;
+		
+		> p {
+			text-align: right;
+			padding: 6px;
+			margin: 0;
+			font-size: 0.75rem;
+			color: #888888;
+			
+			&.build {
+				margin-bottom: -0.9rem;
+				font-size: 0.7rem;
+			}
+			
+			> span {
+				font-weight: bold;
+			}
+		}
+	}
+	
+	> div.content {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		position: absolute;
+		left: 270px;
+		top: 50px;
+		right: 0;
+		bottom: 0;
+		padding: 0 0 60px 0;
+		overflow-y: auto;
+		
+		> section {
+			display: flex;
+			flex-direction: column;
+			gap: 16px;
+			flex-grow: 1;
+			padding: 12px;
+			
+			&:has(> h1.loading) {
+				justify-content: center;
+				align-items: center;
+				font-size: 1.7rem;
+				gap: 8px;
+				
+				> h3.hash {
+					color: #aaaaaa;
+				}
+			}
+		}
+	}
+}
+
+div.hr {
+	width: 100%;
+	height: 1px;
+	background-color: #444444;
+	margin: 10px 0;
+}

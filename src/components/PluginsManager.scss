@@ -1,0 +1,234 @@
+section.pluginsManager {
+	> div.buttons {
+		display: flex;
+		flex-direction: row;
+		gap: 12px;
+		gap: 12px;
+		
+		> button {
+			display: flex;
+			flex-direction: row;
+			align-items: center;
+			justify-content: center;
+			gap: 6px;
+			padding: 8px;
+			border: none;
+			outline: none;
+			border-radius: 6px;
+			transition: background-color 150ms, color 150ms;
+			background-color: #444444;
+			color: #ffffff;
+			cursor: pointer;
+			
+			> p {
+				font-size: 1.1rem;
+			}
+			
+			&:hover {
+				background-color: #4f4f4f;
+			}
+		}
+	}
+	
+	> div.tabs {
+		display: flex;
+		flex-direction: row;
+		gap: 0;
+		position: relative;
+		overflow-x: auto;
+		border-bottom: 1px solid #313339;
+		user-select: none;
+		
+		> button {
+			border: none;
+			outline: none;
+			background-color: transparent;
+			padding: 12px 16px;
+			font-size: 1em;
+			text-wrap: nowrap;
+			box-sizing: border-box;
+			transition: color 150ms ease-in-out;
+			color: #bbbcbe;
+			cursor: pointer;
+			
+			&.active {
+				color: #ffffff;
+			}
+		}
+		
+		> span.tabIndicator {
+			position: absolute;
+			bottom: 0;
+			height: 2px;
+			background-color: #ffffff;
+			transition: left 300ms ease-in-out, width 300ms ease-in-out;
+		}
+	}
+	
+	> div.plugins {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		
+		> div.plugin {
+			display: flex;
+			flex-direction: column;
+			justify-content: center;
+			gap: 6px;
+			border-radius: 8px;
+			height: 60px;
+			box-sizing: border-box;
+			transition: background-color 150ms;
+			background-color: #313135;
+			
+			> div.header {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 6px;
+				padding: 6px 12px;
+				border-radius: 8px;
+				transition: background-color 150ms;
+				background-color: #1f2024;
+				cursor: pointer;
+				
+				> p.name {
+					font-size: 1.3rem;
+				}
+				
+				> p.id {
+					color: #aaaaaa;
+					font-size: 0.9rem;
+				}
+				
+				> button.manage {
+					border: none;
+					outline: none;
+					width: 3rem;
+					height: 3rem;
+					margin-left: auto;
+					position: relative;
+					transition: color 150ms;
+					color: #ffffff;
+					background-color: transparent;
+					cursor: pointer;
+					
+					> span.material-symbol {
+						z-index: 2;
+						transform: rotate(0deg);
+						transition: transform 150ms;
+					}
+					
+					&::after {
+						content: '';
+						display: block;
+						width: 3rem;
+						height: 3rem;
+						position: absolute;
+						left: 50%;
+						top: 50%;
+						transform: translate(-50%, -50%) scale(0%);
+						border-radius: 100%;
+						background-color: #ffffff1a;
+						transition: transform 150ms;
+					}
+				}
+			}
+			
+			&:not(.blocked) > div.header:hover, > div.header:has(button.manage:hover) {
+				background-color: #38383d;
+				
+				> button.manage {
+					&::after {
+						transform: translate(-50%, -50%) scale(100%);
+					}
+				}
+			}
+			
+			&.selected {
+				height: fit-content;
+				padding-bottom: 12px;
+				
+				> div.header {
+					background-color: #38383d;
+					border-radius: 8px 8px 0 0;
+					
+					> button.manage {
+						> span.material-symbol {
+							transform: rotate(-90deg);
+						}
+					}
+				}
+			}
+			
+			> div {
+				display: flex;
+				flex-direction: column;
+				gap: 12px;
+				padding: 6px 12px;
+				
+				&.actions {
+					> div.buttons {
+						display: flex;
+						flex-direction: row;
+						gap: 12px;
+						gap: 12px;
+						
+						> button {
+							flex-grow: 1;
+							display: flex;
+							flex-direction: row;
+							align-items: center;
+							justify-content: center;
+							gap: 6px;
+							padding: 8px;
+							border: none;
+							outline: none;
+							border-radius: 6px;
+							transition: background-color 150ms, color 150ms;
+							background-color: #444444;
+							color: #ffffff;
+							cursor: pointer;
+							
+							> p {
+								font-size: 1.2rem;
+							}
+							
+							&.unauthorize {
+								background-color: #cf7a7a;
+							}
+							
+							&:hover {
+								background-color: #555555;
+								
+								&.unauthorize {
+									background-color: hsl(0, 47%, 55%);
+									color: #f5b4b4;
+								}
+							}
+						}
+					}
+				}
+			}
+			
+			&.blocked {
+				> div.header {
+					cursor: default;
+					
+					> p.id {
+						font-size: 1.3rem;
+					}
+					
+					> button.manage {
+						color: #d65555;
+					}
+				}
+			}
+		}
+		
+		> h2.none {
+			text-align: center;
+			color: #aaaaaa;
+		}
+	}
+}

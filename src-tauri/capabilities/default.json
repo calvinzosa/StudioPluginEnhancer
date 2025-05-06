@@ -1,0 +1,92 @@
+{
+  "$schema": "../gen/schemas/desktop-schema.json",
+  "identifier": "default",
+  "description": "Capability for the main window",
+  "windows": [
+    "main"
+  ],
+  "permissions": [
+    "core:default",
+    "opener:default",
+    "core:app:allow-default-window-icon",
+    "core:image:allow-from-path",
+    "core:window:allow-show",
+    "core:window:allow-hide",
+    "core:window:allow-start-dragging",
+    "core:window:allow-minimize",
+    "core:window:allow-close",
+    "core:window:allow-set-focus",
+    "dialog:default",
+    "process:allow-exit",
+    "store:default",
+    "fs:default",
+    {
+      "identifier": "fs:allow-exists",
+      "allow": [
+        {
+          "path": "**/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-write-file",
+      "allow": [
+        {
+          "path": "**/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-copy-file",
+      "allow": [
+        {
+          "path": "**/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-read-file",
+      "allow": [
+        {
+          "path": "**/*"
+        }
+      ]
+    },
+    {
+      "identifier": "fs:allow-remove",
+      "allow": [
+        {
+          "path": "**/*"
+        }
+      ]
+    },
+    "shell:default",
+    {
+      "identifier": "shell:allow-spawn",
+      "allow": [
+        {
+          "cmd": "powershell.exe",
+          "name": "powershell.exe"
+        },
+        {
+          "cmd": "powershell",
+          "name": "powershell"
+        }
+      ]
+    },
+    "shell:allow-stdin-write",
+    "autostart:allow-enable",
+    "autostart:allow-disable",
+    "autostart:allow-is-enabled",
+    {
+      "identifier": "http:default",
+      "allow": [
+        {
+          "url": "https://*.roblox.com/*"
+        }
+      ]
+    },
+    "core:path:allow-resolve",
+    "core:path:allow-resolve-directory"
+  ]
+}

@@ -1,0 +1,127 @@
+section.pluginAuthorization {
+	justify-content: center;
+	position: absolute;
+	left: 0;
+	top: 1px;
+	right: 0;
+	bottom: 0;
+	backdrop-filter: blur(10px);
+	z-index: 10;
+	
+	> h1 {
+		display: flex;
+		flex-direction: row;
+		justify-content: center;
+		align-items: center;
+		gap: 8px;
+		text-align: center;
+		font-size: 3rem;
+		
+		> span.material-symbol {
+			font-size: 3rem;
+		}
+	}
+	
+	> div.info {
+		display: flex;
+		flex-direction: column;
+		gap: 0;
+		width: fit-content;
+		padding: 8px 32px;
+		margin: 0 auto;
+		background-color: #1f2128;
+		border-radius: 6px;
+		
+		> div {
+			display: flex;
+			flex-direction: row;
+			justify-content: center;
+			align-items: center;
+			gap: 12px;
+			padding: 12px;
+			
+			&.name {
+				flex-direction: column;
+				font-size: 2rem;
+				
+				> p.name {
+					display: flex;
+					flex-direction: row;
+					align-items: center;
+					gap: 6px;
+				}
+				
+				> p.id {
+					color: #aaaaaa;
+					font-size: 1.5rem;
+				}
+			}
+			
+			&.user {
+				font-size: 2rem;
+				
+				> img.thumbnail {
+					background-color: #2f323d;
+					border-radius: 100%;
+					width: 60px;
+					height: 60px;
+				}
+				
+				> p.name {
+					display: flex;
+					align-items: center;
+					gap: 12px;
+					
+					> span.displayName {
+						font-size: 1.3rem;
+						color: #aaaaaa;
+					}
+				}
+				
+				> p.error {
+					color: #c55151;
+					font-size: 1rem;
+				}
+			}
+			
+			&.actions {
+				padding: 12px 0;
+				margin: 0 -16px;
+				
+				> button {
+					display: flex;
+					flex-direction: row;
+					justify-content: center;
+					align-items: center;
+					gap: 6px;
+					padding: 6px 12px;
+					border-radius: 6px;
+					border: none;
+					outline: none;
+					font-size: 1.5rem;
+					flex-grow: 1;
+					transition: background-color 150ms;
+					background-color: #444444;
+					color: #ffffff;
+					cursor: pointer;
+					
+					> span.material-symbol {
+						font-size: 1.7rem;
+					}
+					
+					&.authorize {
+						background-color: #335fff;
+					}
+					
+					&:hover {
+						background-color: #4f4f4f;
+						
+						&.authorize {
+							background-color: #1446ff;
+						}
+					}
+				}
+			}
+		}
+	}
+}

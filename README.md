@@ -6,6 +6,6 @@ An app for Roblox Studio to allow plugins to have more capabilities
 
 # Preview
 
-<img src="/images/appsettings.png" alt="App Settings" style="border-radius: 15px; width: 100%;" />
+<img src="/images/appsettings.png" alt="App Settings" style="width: 100%;" />
 
-<img src="/images/manageplugins.png" alt="Manage Plugins" style="border-radius: 15px; width: 100%;" />
+<img src="/images/manageplugins.png" alt="Manage Plugins" style="width: 100%;" />

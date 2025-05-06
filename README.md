@@ -1,7 +1,11 @@
-# Tauri + React + Typescript
+<img src="/images/logo.svg" alt="StudioPluginEnhancer Logo" style="width: 100%;" />
 
-This template should help get you started developing with Tauri, React and Typescript in Vite.
+![Latest Release](https://img.shields.io/github/v/release/calvinzosa/StudioPluginEnhancer)
 
-## Recommended IDE Setup
+An app for Roblox Studio to allow plugins to have more capabilities
 
-- [VS Code](https://code.visualstudio.com/) + [Tauri](https://marketplace.visualstudio.com/items?itemName=tauri-apps.tauri-vscode) + [rust-analyzer](https://marketplace.visualstudio.com/items?itemName=rust-lang.rust-analyzer)
+# Preview
+
+<img src="/images/appsettings.png" alt="App Settings" style="border-radius: 15px; width: 100%;" />
+
+<img src="/images/manageplugins.png" alt="Manage Plugins" style="border-radius: 15px; width: 100%;" />

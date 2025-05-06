@@ -62,7 +62,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ store }) => {
 					checked={toggled}
 					onChange={(newValue) => setAppSettings({ ...appSettings, app: { ...appSettings.app, [id]: newValue } })}
 				>
-					<p>{id in SettingLabels ? SettingLabels[id] : '#' + id}</p>
+					<p>{id in SettingLabels ? SettingLabels[id as keyof AppSettings['app']] : '#' + id}</p>
 				</CheckboxInput>
 			))}
 			<div className={'hr'} />
@@ -77,7 +77,7 @@ const SettingsPage: React.FC<SettingsPageProps> = ({ store }) => {
 					checked={toggled}
 					onChange={(newValue) => setAppSettings({ ...appSettings, plugins: { ...appSettings.plugins, [id]: newValue } })}
 				>
-					<p>{id in SettingLabels ? SettingLabels[id] : id}</p>
+					<p>{id in SettingLabels ? SettingLabels[id as keyof AppSettings['plugins']] : id}</p>
 				</CheckboxInput>
 			))}
 		</section>

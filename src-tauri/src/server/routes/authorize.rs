@@ -64,7 +64,7 @@ pub async fn route(req: HttpRequest, body: web::Json<Body>, handle: web::Data<ta
 		return response;
 	}
 	
-	if plugin_id.len() > 16 || !plugin_id.chars().all(|c| c.is_ascii_lowercase() || c.is_ascii_digit() || c == '-') {
+	if plugin_id.len() > 16 || !plugin_id.chars().all(|c| c.is_ascii_alphanumeric() || c == '-') {
 		return HttpResponse::BadRequest().json(ErrorResponse {
 			error: "id must be at most 16 characters in length and only contain alphanumeric characters and hyphens (-)".into(),
 		});
@@ -79,7 +79,7 @@ pub async fn route(req: HttpRequest, body: web::Json<Body>, handle: web::Data<ta
 	let mut seen = HashSet::new();
 	for perm in &body.requested_permissions {
 		if !seen.insert(perm) {
-			return HttpResponse::BadRequest().json(ErrorResponse { error: format!("duplicate permission: {:?}", perm) });
+			return HttpResponse::BadRequest().json(ErrorResponse { error: format!("duplicate permission: {perm:?}") });
 		}
 	}
 	

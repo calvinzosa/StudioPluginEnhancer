@@ -9,6 +9,7 @@ pub enum Permission {
 	Copy,
 	Download,
 	Proxy,
+	Api,
 }
 
 #[derive(Deserialize)]
@@ -43,6 +44,7 @@ pub struct SettingsPlugin {
 	pub copy: bool,
 	pub download: bool,
 	pub proxy: bool,
+	pub api: bool,
 }
 
 // http

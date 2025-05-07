@@ -46,9 +46,9 @@ export async function initTray() {
 	
 	const toggle = async () => {
 		if (await webviewWindow.isVisible()) {
-			hide();
+			await hide();
 		} else {
-			show();
+			await show();
 		}
 	};
 	

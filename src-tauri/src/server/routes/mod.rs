@@ -5,4 +5,4 @@ pub mod is_authorized;
 
 pub mod copy;
 pub mod download;
-pub mod fetch;
+pub mod legacy_api;

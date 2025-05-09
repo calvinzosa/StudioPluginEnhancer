@@ -1,0 +1,179 @@
+section.usageLogs {
+	overflow-y: scroll !important;
+	
+	> div.filters {
+		position: absolute;
+		left: 0;
+		top: 0;
+		right: 15px;
+		height: 80px;
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		padding: 0 16px;
+		gap: 12px;
+		border: 1px solid #313339;
+		border-width: 1px 0;
+		background-color: #111216;
+		
+		> div.search {
+			display: flex;
+			flex-direction: row;
+			flex-grow: 1;
+			width: fit-content;
+			position: relative;
+			border-radius: 44px;
+			
+			> input {
+				flex-grow: 1;
+				min-width: 150px;
+				height: 44px;
+				border-radius: 44px;
+				padding: 12px;
+				box-sizing: border-box;
+				font-size: 1rem;
+				text-overflow: ellipsis;
+				transition: outline 150ms;
+				outline: 1px solid #37383b;
+				border: none;
+				background-color: #111216;
+				color: #ffffff;
+				
+				&::placeholder {
+					opacity: 0.5;
+				}
+			}
+			
+			> label {
+				position: absolute;
+				top: 50%;
+				left: 6px;
+				border-radius: 16px;
+				padding: 0 6px;
+				font-size: 1rem;
+				background-color: #111216;
+				transform: translateY(-50%);
+				color: #aaaaaa;
+				transition: color 150ms, top 150ms, font-size 150ms;
+				pointer-events: none;
+			}
+			
+			&:has(> span.material-symbol) {
+				> input {
+					padding-right: 48px;
+				}
+				
+				> span.material-symbol {
+					position: absolute;
+					top: 22px;
+					right: 24px;
+					transform: translate(50%, -50%);
+					opacity: 0.5;
+					transition: opacity 150ms;
+					pointer-events: none;
+				}
+			}
+			
+			&:hover {
+				> input {
+					outline-color: #ffffff;
+				}
+				
+				> label {
+					color: #ffffff;
+				}
+			}
+			
+			&:has(> input:focus) {
+				> input {
+					outline: 2px solid white;
+				}
+				
+				> label {
+					color: #ffffff;
+				}
+				
+				> span.material-symbol {
+					opacity: 1;
+				}
+			}
+			
+			&:has(> input:not([value=""])), &:has(> input:focus) {
+				> label {
+					top: 0;
+					font-size: 13px;
+				}
+			}
+		}
+	}
+	
+	> h1.noneFound {
+		color: #aaaaaa;
+	}
+	
+	> div.list {
+		display: flex;
+		flex-direction: column;
+		gap: 16px;
+		padding-top: 84px;
+		
+		> div.log {
+			display: flex;
+			flex-direction: column;
+			gap: 8px;
+			border-radius: 8px;
+			padding: 12px;
+			background-color: #1f2024;
+			
+			> div.plugin {
+				display: flex;
+				flex-direction: row;
+				align-items: center;
+				gap: 6px;
+				
+				> p.name {
+					font-size: 1.3rem;
+				}
+				
+				> p.id {
+					color: #aaaaaa;
+					font-size: 0.9rem;
+				}
+				
+				> div.space {
+					flex-grow: 1;
+				}
+				
+				> p.timestamp {
+					color: #aaaaaa;
+				}
+			}
+			
+			> p.performed {
+				font-size: 1.1rem;
+			}
+			
+			> p.data {
+				word-wrap: break-word;
+			}
+		}
+	}
+	
+	&:has(> div.graphContainer) {
+		overflow: hidden;
+		
+		> div.graphContainer {
+			display: flex;
+			flex-direction: column;
+			flex-grow: 1;
+			gap: 16px;
+			padding-top: 84px;
+			overflow: hidden;
+			
+			> canvas.graph {
+				flex-grow: 1;
+				border: 1px solid #37383b;
+			}
+		}
+	}
+}

@@ -16,7 +16,7 @@ export async function waitUntilLoaded() {
 }
 
 export async function loadStore() {
-	store = await load('Config.json', { autoSave: true });
+	store = await load('Config.json', { createNew: false, autoSave: true });
 	
 	if (await store.get<AppSettings>('AppSettings') === undefined) {
 		await store.set('AppSettings', DefaultAppSettings);

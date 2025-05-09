@@ -87,6 +87,9 @@
       ]
     },
     "core:path:allow-resolve",
-    "core:path:allow-resolve-directory"
+    "core:path:allow-resolve-directory",
+    "clipboard-manager:allow-write-text",
+    "core:window:allow-set-size",
+    "core:window:allow-center"
   ]
 }

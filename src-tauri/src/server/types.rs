@@ -8,7 +8,6 @@ use serde::{Deserialize, Serialize};
 pub enum Permission {
 	Copy,
 	Download,
-	Proxy,
 	Api,
 }
 
@@ -43,11 +42,19 @@ pub struct AppSettings {
 pub struct SettingsPlugin {
 	pub copy: bool,
 	pub download: bool,
-	pub proxy: bool,
 	pub api: bool,
 }
 
 // http
+#[derive(Serialize, Deserialize, Debug, PartialEq, Eq, Hash, Clone)]
+#[serde(rename_all = "camelCase")]
+pub enum Perform {
+	Authorize,
+	Copy,
+	Download,
+	LegacyApi,
+}
+
 #[derive(Serialize)]
 pub struct ErrorResponse {
 	pub error: String,
@@ -56,4 +63,12 @@ pub struct ErrorResponse {
 #[derive(Serialize)]
 pub struct OkResponse {
 	pub ok: bool,
+}
+
+#[derive(Serialize, Clone)]
+pub struct LogPayload {
+	#[serde(rename = "pluginId")]
+	pub plugin_id: String,
+	pub performed: Perform,
+	pub data: String,
 }

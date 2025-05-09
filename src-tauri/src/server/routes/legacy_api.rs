@@ -1,12 +1,13 @@
-use crate::server::{app_config, types::{ErrorResponse, Permission}, window_info};
+use crate::server::{app_config, types::{ErrorResponse, LogPayload, Perform, Permission}, window_info};
 
-use std::collections::HashMap;
+use std::collections::{HashMap, HashSet};
 
+use tauri::Emitter;
 use actix_web::{post, HttpRequest, HttpResponse, Responder, web};
 use serde::{Deserialize, Serialize};
 
 #[derive(Deserialize, PartialEq)]
-#[serde(rename_all = "lowercase")]
+#[serde(rename_all = "UPPERCASE")]
 enum Method {
 	Get,
 	Post,
@@ -59,13 +60,13 @@ pub async fn route(req: HttpRequest, body: web::Json<Body>, handle: web::Data<ta
 		Method::Patch => reqwest::Method::PATCH,
 	};
 	
-	let mut request = client.request(method, url);
+	let mut request = client.request(method, &url);
 	
 	if let Some(ref b) = body.body {
 		if body.method != Method::Get {
 			request = request.body(b.clone());
 		} else {
-			return HttpResponse::BadRequest().json(ErrorResponse { error: "cannot set get request body".into() });
+			return HttpResponse::BadRequest().json(ErrorResponse { error: "cannot set body for get request".into() });
 		}
 	}
 	
@@ -76,21 +77,28 @@ pub async fn route(req: HttpRequest, body: web::Json<Body>, handle: web::Data<ta
 	
 	let status = response.status().as_u16();
 	
+	let allowed_headers = HashSet::from(["content-type", "content-length", "date"]);
 	let mut headers = HashMap::new();
 	for (key, value) in response.headers().iter() {
-		let key_str = key.to_string();
+		let key_str = key.as_str();
 		let value_str = match value.to_str() {
 			Ok(s) => s.to_string(),
 			Err(e) => format!("failed to get header: {e}"),
 		};
 		
-		headers.insert(key_str, value_str);
+		if allowed_headers.contains(key_str) {
+			headers.insert(key_str.to_string(), value_str);
+		}
 	}
 	
 	let body = match response.bytes().await {
 		Ok(b) => b.to_vec(),
 		Err(e) => return HttpResponse::InternalServerError().json(ErrorResponse { error: format!("failed to read body as bytes: {e}") }),
 	};
+	
+	if let Err(e) = handle.emit("log", LogPayload { plugin_id: plugin_id.into(), performed: Perform::LegacyApi, data: url }) {
+		return HttpResponse::InternalServerError().json(ErrorResponse { error: format!("failed to log: {e}") });
+	}
 	
 	HttpResponse::Ok().json(Response {
 		status,

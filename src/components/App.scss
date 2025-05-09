@@ -4,7 +4,7 @@
 }
 
 @font-face {
-	font-family: 'Google Material Symbols';
+	font-family: 'Material Symbols Sharp';
 	src: url(/src/assets/GoogleMaterialSymbols.ttf) format(truetype);
 }
 
@@ -14,10 +14,11 @@ body {
 	color: #ffffff;
 	background-color: #111216;
 	font-family: 'Outfit';
+	overflow: hidden;
 }
 
 span.material-symbol {
-	font-family: 'Google Material Symbols';
+	font-family: 'Material Symbols Sharp';
 	font-weight: normal;
 	font-style: normal;
 	font-size: 24px;
@@ -52,7 +53,7 @@ button, input {
 	font-family: 'Outfit';
 }
 
-img {
+* {
 	-webkit-user-drag: none;
 }
 
@@ -62,6 +63,7 @@ main {
 	top: 0;
 	right: 0;
 	bottom: 0;
+	overflow: hidden;
 	
 	> div.topbar {
 		display: flex;
@@ -221,7 +223,6 @@ main {
 		right: 0;
 		bottom: 0;
 		padding: 0 0 60px 0;
-		overflow-y: auto;
 		
 		> section {
 			display: flex;
@@ -229,6 +230,7 @@ main {
 			gap: 16px;
 			flex-grow: 1;
 			padding: 12px;
+			overflow-y: auto;
 			
 			&:has(> h1.loading) {
 				justify-content: center;

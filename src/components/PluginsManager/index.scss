@@ -61,7 +61,7 @@ section.pluginsManager {
 			bottom: 0;
 			height: 2px;
 			background-color: #ffffff;
-			transition: left 300ms ease-in-out, width 300ms ease-in-out;
+			transition: left 250ms ease-in-out, width 250ms ease-in-out;
 		}
 	}
 	
@@ -69,6 +69,7 @@ section.pluginsManager {
 		display: flex;
 		flex-direction: column;
 		gap: 12px;
+		flex-grow: 1;
 		
 		> div.plugin {
 			display: flex;
@@ -226,9 +227,14 @@ section.pluginsManager {
 			}
 		}
 		
-		> h2.none {
-			text-align: center;
-			color: #aaaaaa;
+		&:has(> h1.none) {
+			justify-content: center;
+			
+			> h1.none {
+				text-align: center;
+				color: #aaaaaa;
+				font-size: 2.5rem;
+			}
 		}
 	}
 }

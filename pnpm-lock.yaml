@@ -14,6 +14,9 @@ importers:
       '@tauri-apps/plugin-autostart':
         specifier: ~2
         version: 2.3.0
+      '@tauri-apps/plugin-clipboard-manager':
+        specifier: ~2.2.2
+        version: 2.2.2
       '@tauri-apps/plugin-dialog':
         specifier: ~2.2.1
         version: 2.2.1
@@ -35,6 +38,9 @@ importers:
       '@tauri-apps/plugin-store':
         specifier: ~2.2.0
         version: 2.2.0
+      jsonpack:
+        specifier: ^1.1.5
+        version: 1.1.5
       react:
         specifier: ^18.3.1
         version: 18.3.1
@@ -48,6 +54,9 @@ importers:
       '@tauri-apps/cli':
         specifier: ^2
         version: 2.5.0
+      '@types/jsonpack':
+        specifier: ^1.1.6
+        version: 1.1.6
       '@types/react':
         specifier: ^18.3.1
         version: 18.3.20
@@ -579,6 +588,9 @@ packages:
   '@tauri-apps/plugin-autostart@2.3.0':
     resolution: {integrity: sha512-yxQTpc4NolT1r317yjKVhrG+YwCWPBOj7p+70m/q0w1JHc53pGcHmTboAbA3kGY6PQ+9y9oE7cdmHq7PH9z/SQ==}
 
+  '@tauri-apps/plugin-clipboard-manager@2.2.2':
+    resolution: {integrity: sha512-bZvDLMqfcNmsw7Ag8I49jlaCjdpDvvlJHnpp6P+Gg/3xtpSERdwlDxm7cKGbs2mj46dsw4AuG3RoAgcpwgioUA==}
+
   '@tauri-apps/plugin-dialog@2.2.1':
     resolution: {integrity: sha512-wZmCouo4PgTosh/UoejPw9DPs6RllS5Pp3fuOV2JobCu36mR5AXU2MzU9NZiVaFi/5Zfc8RN0IhcZHnksJ1o8A==}
 
@@ -614,6 +626,9 @@ packages:
 
   '@types/estree@1.0.7':
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
+
+  '@types/jsonpack@1.1.6':
+    resolution: {integrity: sha512-DgrnYXyQKDNWT5ozElqhOzPfyUMYUMFlP2gzVEuWGsn0xM6PF2W93M5j02cq4XvJH76SblfEjM4at74KXQU/kA==}
 
   '@types/node@22.15.3':
     resolution: {integrity: sha512-lX7HFZeHf4QG/J7tBZqrCAXwz9J5RD56Y6MpP0eJkka8p+K0RY/yBTW7CYFJ4VGCclxqOLKmiGP5juQc6MKgcw==}
@@ -739,6 +754,9 @@ packages:
     resolution: {integrity: sha512-XmOWe7eyHYH14cLdVPoyg+GOH3rYX++KpzrylJwSW98t3Nk+U8XOl8FWKOgwtzdb8lXGf6zYwDUzeHMWfxasyg==}
     engines: {node: '>=6'}
     hasBin: true
+
+  jsonpack@1.1.5:
+    resolution: {integrity: sha512-d2vwomK605ks7Q+uCpbwGyoIF5j+UZuJjlYcugISBt3CxM+eBo/W6y63yVPIyIvbYON+pvJYsYZjCYbzqJj/xQ==}
 
   loose-envify@1.4.0:
     resolution: {integrity: sha512-lyuxPGr/Wfhrlem2CL/UcnUc1zcqKAImBDzukY7Y5F/yQiNdko6+fRLevlw1HgMySw7f611UIY408EtxRSoK3Q==}
@@ -1289,6 +1307,10 @@ snapshots:
     dependencies:
       '@tauri-apps/api': 2.5.0
 
+  '@tauri-apps/plugin-clipboard-manager@2.2.2':
+    dependencies:
+      '@tauri-apps/api': 2.5.0
+
   '@tauri-apps/plugin-dialog@2.2.1':
     dependencies:
       '@tauri-apps/api': 2.5.0
@@ -1339,6 +1361,8 @@ snapshots:
       '@babel/types': 7.27.1
 
   '@types/estree@1.0.7': {}
+
+  '@types/jsonpack@1.1.6': {}
 
   '@types/node@22.15.3':
     dependencies:
@@ -1464,6 +1488,8 @@ snapshots:
   jsesc@3.1.0: {}
 
   json5@2.2.3: {}
+
+  jsonpack@1.1.5: {}
 
   loose-envify@1.4.0:
     dependencies:

@@ -29,7 +29,6 @@ impl AppConfig {
 		match permission {
 			Permission::Copy => self.app_config.plugins.copy,
 			Permission::Download => self.app_config.plugins.download,
-			Permission::Proxy => self.app_config.plugins.proxy,
 			Permission::Api => self.app_config.plugins.api,
 		}
 	}
@@ -59,7 +58,7 @@ pub async fn init(handle: AppHandle, path: PathResolver<Wry>) -> io::Result<()> 
 			.wrap(Governor::new(&governor_conf))
 			.app_data(web::Data::new(handle.clone()))
 			.app_data(web::Data::new(path.clone()))
-			.app_data(Client::new())
+			.app_data(web::Data::new(Client::new()))
 			.service(routes::root::route)
 			.service(routes::authorize::route)
 			.service(routes::is_authorized::route)

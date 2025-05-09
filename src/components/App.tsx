@@ -13,6 +13,8 @@ import PluginAuthorization from './PluginAuthorization';
 import DownloadInitializer from './DownloadInitializer';
 import PluginsManager from './PluginsManager';
 import SettingsPage from './SettingsPage';
+import UsageLogs from './UsageLogs';
+import DebugPage from './DebugPage';
 
 import Logo from '/src/assets/StudioPluginEnhancer-512x.png';
 
@@ -24,6 +26,7 @@ const App: React.FC = () => {
 	const [appVersion, setAppVersion] = useState<string>('X.Y.Z');
 	const [tauriVersion, setTauriVersion] = useState<string>('X.Y.Z');
 	const [store, setStore] = useState<Store | null>(null);
+	
 	const [authPlugin, setAuthPlugin] = useState<AuthorizedPluginPayload | null>(null);
 	const [downloadInfo, setDownloadInfo] = useState<InitializeDownloadPayload | null>(null);
 	
@@ -105,18 +108,20 @@ const App: React.FC = () => {
 					<span className={'material-symbol'}>settings</span>
 					<p>App Settings</p>
 				</NavLink>
-				<NavLink className={'tab disabled'} to={'/plugin'} end>
-					<span className={'material-symbol'}>extension</span>
-					<p>App Plugin</p>
-				</NavLink>
 				<NavLink className={'tab'} to={'/pluginsManager'} end>
 					<span className={'material-symbol'}>key</span>
 					<p>Manage Plugins</p>
 				</NavLink>
-				<NavLink className={'tab disabled'} to={'/logs'} end>
+				<NavLink className={'tab'} to={'/usageLogs'} end>
 					<span className={'material-symbol'}>history</span>
 					<p>Usage Logs</p>
 				</NavLink>
+				{buildEnvironment === 'development' && (
+					<NavLink className={'tab'} to={'/debug'} end>
+						<span className={'material-symbol'}>bug_report</span>
+						<p>Debug</p>
+					</NavLink>
+				)}
 				<div className={'space'} />
 				<a
 					className={'tab quit'}
@@ -137,6 +142,8 @@ const App: React.FC = () => {
 				<Routes>
 					<Route path={'/'} element={<SettingsPage store={store} />} />
 					<Route path={'/pluginsManager'} element={<PluginsManager store={store} />} />
+					<Route path={'/usageLogs'} element={<UsageLogs store={store} />} />
+					<Route path={'/debug'} element={<DebugPage />} />
 					<Route path={'/*'} element={(
 						<section>
 							<h1 className={'loading'}>404 Not Found</h1>

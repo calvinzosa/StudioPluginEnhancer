@@ -1,8 +1,9 @@
-use crate::server::{window_info, app_config, types::{ErrorResponse, Permission}};
+use crate::server::{window_info, app_config, types::{ErrorResponse, LogPayload, Permission, Perform}};
 
+use tauri::Emitter;
+use tauri_plugin_clipboard_manager::ClipboardExt;
 use actix_web::{post, HttpRequest, HttpResponse, Responder, web};
 use serde::{Deserialize, Serialize};
-use arboard::Clipboard;
 
 #[derive(Serialize)]
 #[serde(rename_all = "lowercase")]
@@ -40,12 +41,11 @@ pub async fn route(req: HttpRequest, body: web::Json<Body>, handle: web::Data<ta
 		return response;
 	}
 	
-	let mut clipboard = match Clipboard::new() {
-		Ok(c) => c,
-		Err(e) => return HttpResponse::InternalServerError().json(ErrorResponse { error: format!("failed to access clipboard: {e}") }),
-	};
+	if let Err(e) = handle.emit("log", LogPayload { plugin_id: plugin_id.into(), performed: Perform::Copy, data: body.value.clone() }) {
+		return HttpResponse::InternalServerError().json(ErrorResponse { error: format!("failed to log: {e}") });
+	}
 	
-	match clipboard.set_text(&body.value) {
+	match handle.clipboard().write_text(&body.value) {
 		Ok(()) => HttpResponse::Ok().json(Response { status: CopyStatus::Copied }),
 		Err(e) => HttpResponse::InternalServerError().json(ErrorResponse { error: format!("failed to copy text: {e}") }),
 	}

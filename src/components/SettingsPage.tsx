@@ -1,8 +1,9 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import { Store } from '@tauri-apps/plugin-store';
 
 import { AppSettings, DefaultAppSettings, SettingLabels } from '../types';
 import { updateStartupSetting } from '../tray';
+import { useAppSettings } from '../hooks/useAppSettings';
 import CheckboxInput from './CheckboxInput';
 
 import './SettingsPage.scss';
@@ -12,18 +13,7 @@ interface SettingsPageProps {
 }
 
 const SettingsPage: React.FC<SettingsPageProps> = ({ store }) => {
-	const [appSettings, setAppSettings] = useState<AppSettings | null>(null);
-	
-	useEffect(() => {
-		if (store === null) {
-			return;
-		}
-		
-		(async () => {
-			const savedAppSettings = await store.get<AppSettings>('AppSettings') ?? DefaultAppSettings;
-			setAppSettings(savedAppSettings);
-		})();
-	}, [store]);
+	const [appSettings, setAppSettings] = useAppSettings(store);
 	
 	useEffect(() => {
 		if (store === null || appSettings === null) {

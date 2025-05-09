@@ -32,6 +32,18 @@ export interface ShutdownPayload {
 	error: string;
 }
 
+export interface LogPayload {
+	pluginId: string;
+	performed: 'copy' | 'download' | 'legacyApi';
+	data: string;
+}
+
+export type SerializedLog = [string, LogPayload['performed'], string, number];
+
+export interface UsageLogs {
+	encodedLogs: string;
+}
+
 export interface RobloxUserInfo {
 	description: string;
 	created: string;
@@ -71,20 +83,20 @@ export interface AppSettings {
 	plugins: {
 		copy: boolean;
 		download: boolean;
-		proxy: boolean;
+		api: boolean;
 	};
 }
 
 export const DefaultAppSettings: AppSettings = {
 	app: {
-		runOnStartup: true,
-		startInBackground: true,
 		promptFullQuit: true,
+		runOnStartup: true,
+		startInBackground: false,
 	},
 	plugins: {
 		copy: true,
 		download: false,
-		proxy: true,
+		api: true,
 	},
 };
 
@@ -96,5 +108,5 @@ export const SettingLabels: Record<SettingNames, string> = {
 	promptFullQuit: 'Prompt full quit',
 	copy: 'Copy text to clipboard',
 	download: 'Download files',
-	proxy: 'Proxy for requests to Roblox API',
+	api: 'Request to legacy Roblox API',
 };

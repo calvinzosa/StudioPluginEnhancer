@@ -1,4 +1,4 @@
-use crate::server::{window_info, app_config, types::{ErrorResponse, Permission}};
+use crate::server::{window_info, app_config, types::{ErrorResponse, LogPayload, Permission, Perform}};
 
 use std::{env::temp_dir, fs::File, io::Write};
 use tauri::Emitter;
@@ -82,6 +82,10 @@ pub async fn route(req: HttpRequest, body: Bytes, query: web::Query<Query>, hand
 	
 	if let Err(e) = handle.emit("initialize_download", payload) {
 		return HttpResponse::InternalServerError().json(ErrorResponse { error: format!("failed to initialize authorization: {e}") });
+	}
+	
+	if let Err(e) = handle.emit("log", LogPayload { plugin_id: plugin_id.into(), performed: Perform::Download, data: query.name.clone() }) {
+		return HttpResponse::InternalServerError().json(ErrorResponse { error: format!("failed to log: {e}") });
 	}
 	
 	HttpResponse::Ok().json(Response {

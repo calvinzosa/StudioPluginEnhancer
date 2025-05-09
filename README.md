@@ -4,6 +4,8 @@
 
 An app for Roblox Studio to allow plugins to have more capabilities
 
+<em><sup>Documentation for SDK will be on https://www.top-hat.net/ soon!</sup></em>
+
 # Preview
 
 <img src="/images/StudioPluginEnhancer_Preview-AppSettings.png" alt="App Settings" width="100%" />

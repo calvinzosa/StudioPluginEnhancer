@@ -50,15 +50,17 @@ const DownloadInitializer: React.FC<DownloadInitializerProps> = ({ store, downlo
 				.then((response) => response.json())
 				.then((headshots: RobloxAvatarHeadshots) => {
 					for (const info of headshots.data) {
-						if (info.state === 'Completed' && info.targetId === plugin.author) {
+						if (info.state === 'Completed') {
 							setThumbnailURL(info.imageUrl);
 							return;
 						}
 					}
 					
-					setThumbnailURL(new Error('Headshot was not found'))
+					setThumbnailURL(new Error('Headshot was not found'));
 				})
-				.catch((err) => setUserInfo(err instanceof Error ? err : new Error(String(err))));
+				.catch((err) => {
+					setUserInfo(err instanceof Error ? err : new Error(String(err)));
+				});
 		})();
 	}, []);
 	

@@ -19,7 +19,7 @@ const UsageLogs: React.FC<UsageLogsProps> = ({ store }) => {
 	const [pluginIndex, setPluginIndex] = useState<number>(0);
 	const [actionIndex, setActionIndex] = useState<number>(0);
 	
-	const actions = ['All', 'Copy', 'Download', 'Legacy API', 'Cloud API'];
+	const actions = ['All', 'Copy', 'Download', 'Legacy API'];
 	
 	if (store === null) {
 		return (
@@ -43,10 +43,6 @@ const UsageLogs: React.FC<UsageLogsProps> = ({ store }) => {
 		}
 		case 3: {
 			filterPerformed = 'legacyApi';
-			break;
-		}
-		case 4: {
-			filterPerformed = 'cloudApi';
 			break;
 		}
 	}
